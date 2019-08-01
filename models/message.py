@@ -4,7 +4,7 @@ from sqlalchemy.dialects.postgresql import UUID
 
 class Message(db.Model):
     __tablename__ = 'messages'
-    id = db.Column(UUID, primary_key=True)
+    id = db.Column(UUID, primary_key=True, server_default='gen_random_uuid()')
     received_at = db.Column(db.DateTime, nullable=False)
     from_number = db.Column(db.Text, nullable=False)
     to_number = db.Column(db.Text, nullable=False)
