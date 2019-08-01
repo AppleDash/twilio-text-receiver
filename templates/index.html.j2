@@ -18,5 +18,15 @@
                 </div>
             </div>
         </div>
+
+        <script src="/static/moment.min.js"></script>
+        <script src="/static/moment-timezone-with-data-1970-2030.min.js"></script>
+        <script>
+            const elements = document.getElementsByClassName('datetime');
+
+            for (const element of elements) {
+                element.textContent = moment(element.textContent).tz('America/Toronto').format('MMMM Do YYYY, h:mm:ss A');
+            }
+        </script>
     </body>
 </html>
