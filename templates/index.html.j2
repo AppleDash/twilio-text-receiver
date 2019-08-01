@@ -11,7 +11,7 @@
                 <div class="column col-12">
                     <dl>
                         {% for message in messages %}
-                            <dt>Message from {{ message.from_number }} to {{ message.to_number }} at {{ message.received_at }}:</dt>
+                            <dt>Message from {{ message.from_number }} to {{ message.to_number }} at <span class="datetime">{{ message.received_at }}</span>:</dt>
                             <dd>{{ message.body }}</dd>
                         {% endfor %}
                     </dl>
