@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Text Messages</title>
+    </head>
+    <body>
+        <ul>
+            {% for message in messages %}
+                <li>
+                    <p>Message from {{ message.from_number }} to {{ message.to_number }} at {{ message.received_at }}:</p>
+                    <p>{{ message.body }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
