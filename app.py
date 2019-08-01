@@ -14,7 +14,7 @@ migrate = flask_migrate.Migrate(app, db)
 from models.message import Message
 
 # this function handles the webhook endpoint, which is called by Twilio when we receive a text on our number.
-@app.route('/webhook')
+@app.route('/webhook', methods=['POST'])
 @twilio_util.validate_twilio_request
 def handle_webhook():
     request = flask.request
