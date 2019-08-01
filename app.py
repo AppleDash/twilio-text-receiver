@@ -39,7 +39,7 @@ def handle_webhook():
 # this function handles the root endpoint, which is where texts that have been received will be displayed.
 @app.route('/')
 def handle_index():
-    return flask.render_template('index.html.j2', messages=Message.query.order_by(Message.received_at))
+    return flask.render_template('index.html.j2', messages=Message.query.order_by(Message.received_at.desc()))
 
 
 if __name__ == '__main__':
