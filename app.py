@@ -1,7 +1,6 @@
 import os
 import flask
 import datetime
-import twilio_util
 import flask_migrate
 import flask_sqlalchemy
 
@@ -11,14 +10,18 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = flask_sqlalchemy.SQLAlchemy(app)
 migrate = flask_migrate.Migrate(app, db)
 
+TOKEN = os.environ['TOKEN']
+
 # this is down here because message.py imports db from app.py (this file), so it needs to be initialized first.
 from models.message import Message
 
 # this function handles the webhook endpoint, which is called by Twilio when we receive a text on our number.
 @app.route('/webhook', methods=['POST'])
-@twilio_util.validate_twilio_request
 def handle_webhook():
     request = flask.request
+
+    if request.args['token'] != TOKEN:
+        return 'bad token', 403
 
     message = Message(
         received_at=datetime.datetime.utcnow(),
