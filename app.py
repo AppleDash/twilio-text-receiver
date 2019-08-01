@@ -34,3 +34,7 @@ def handle_webhook():
 @app.route('/')
 def handle_index():
     return flask.render_template('index.html.j2', messages=Message.query.order_by(Message.received_at))
+
+
+if __name__ == '__main__':
+    app.run()
