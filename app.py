@@ -26,12 +26,14 @@ def handle_webhook():
     message = Message(
         received_at=datetime.datetime.utcnow(),
         from_number=request.form['From'],
-        to_number=request.form('To'),
-        body=request.form('Body')
+        to_number=request.form['To'],
+        body=request.form['Body']
     )
 
     db.session.add(message)
     db.session.commit()
+
+    return 'ok', 201
 
 
 # this function handles the root endpoint, which is where texts that have been received will be displayed.
